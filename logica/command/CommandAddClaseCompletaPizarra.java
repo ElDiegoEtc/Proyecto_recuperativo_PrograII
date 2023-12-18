@@ -2,6 +2,7 @@ package logica.command;
 
 import logica.ElementosPizarra;
 import logica.Pizarra;
+import logica.clasesdecorator.Clase;
 
 import java.io.Serializable;
 

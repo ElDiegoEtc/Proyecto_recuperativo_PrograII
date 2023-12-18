@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import logica.*;
 public class PizarraUML extends JPanel {
+    private DibujaClaseCompleta Dibujar_Clase_Completa;
     private Pizarra pizarraL;
     private PizarraPanel pizarraPanel;
     private JComboBox<Flecha> tipoFlechaComboBox;
@@ -87,30 +88,12 @@ public class PizarraUML extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 pizarraL.clickBoton6(); //crea una clase completa y lo guarda en la pizarra
                 numeroClases = pizarraL.getArrayclases().size();
-                Clase actual = pizarraL.getArrayclases().get(numeroClases -1);
-                ClaseCompletaVista cv = new ClaseCompletaVista();
-                //cv.paint(g, actual);
-
+                Clase actual = pizarraL.getArrayclases().get(numeroClases-1);
+                Dibujar_Clase_Completa = new DibujaClaseCompleta(actual, anadirClaseC);
+                add(Dibujar_Clase_Completa);
                 pizarraPanel.repaint();
             }
         }); //Se debe implementar esto para las otras vistas de clases
-
-        /**
-         * Escucha si se presiona el boton, si lo hace, entonces crea una nueva clase, se le asigna su vista
-         * y deja arrastrarlo visualmente
-         */
-        anadirClaseC.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                pizarraL.clickBoton6(); //crea una clase completa y lo guarda en la pizarra
-                numeroClases = pizarraL.getArrayclases().size();
-                Clase actual = pizarraL.getArrayclases().get(numeroClases -1);
-                ClaseCompletaVista cv = new ClaseCompletaVista();
-                //cv.paint(g, actual);
-
-                pizarraPanel.repaint();
-            }
-        });
 
 
         botonBorrarTodo.addActionListener(new ActionListener() {

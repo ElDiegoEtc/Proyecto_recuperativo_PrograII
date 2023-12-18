@@ -22,8 +22,7 @@ public class main implements Serializable {
             }
         });
     }
-
-    }
+}
 
 
 

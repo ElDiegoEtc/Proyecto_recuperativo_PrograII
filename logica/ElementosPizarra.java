@@ -24,8 +24,11 @@ public class ElementosPizarra implements Serializable {
         p.addClase(new ClaseMetodo(componenteBase, "<Metodos>"));
     }
 
-    /** Añade una clase con 3 strings, se activa con el boton 6
+    /**
+     * Añade una clase con 3 strings, se activa con el boton 6
+     *
      * @param p: Pizarra a la que se le añadira las clase Completa
+     * @return
      */
     public void AddClaseCompleta(Pizarra p){
         Clase componenteBase = new ComponenteBase("<Titulo>");
