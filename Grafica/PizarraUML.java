@@ -9,17 +9,20 @@ import java.util.ArrayList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import logica.*;
+
+import logica.flechasdecorator.Flecha;
+
 public class PizarraUML extends JPanel {
-    private DibujaClaseCompleta Dibujar_Clase_Completa;
     private Pizarra pizarraL;
     private PizarraPanel pizarraPanel;
     private JComboBox<Flecha> tipoFlechaComboBox;
     private JLabel nombrePizarraLabel;
     private boolean primeraVez = true;
-    private int numeroClases;
+    private ArrayList<DibujaClases> listaDibujaClases;
+
 
     public PizarraUML() {
+        listaDibujaClases = new ArrayList<>();
         pizarraL = new Pizarra(new ArrayList<>(), new ArrayList<>());
         CommandConfiguracion.CommandConfiguracion(pizarraL);
         ComponentesInicial();
@@ -80,21 +83,33 @@ public class PizarraUML extends JPanel {
         });
 
         /**
-         * Escucha si se presiona el boton, si lo hace, entonces crea una nueva clase, se le asigna su vista
-         * y deja arrastrarlo visualmente
+         * Escucha si se presiona el boton, si lo hace, entonces deja crear una nueva clase completa mediante
+         * el arrastre del mouse
          */
         anadirClaseC.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pizarraL.clickBoton6(); //crea una clase completa y lo guarda en la pizarra
-                numeroClases = pizarraL.getArrayclases().size();
-                Clase actual = pizarraL.getArrayclases().get(numeroClases-1);
-                Dibujar_Clase_Completa = new DibujaClaseCompleta(actual, anadirClaseC);
-                add(Dibujar_Clase_Completa);
-                pizarraPanel.repaint();
+                DibujaClases nuevaClase = new DibujaClases(3,pizarraL, anadirClaseC);
+                listaDibujaClases.add(nuevaClase);
+                pizarraPanel.addDibujaClases(nuevaClase);
             }
-        }); //Se debe implementar esto para las otras vistas de clases
-
+        });
+        anadirClaseA.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DibujaClases nuevaClase = new DibujaClases(2,pizarraL, anadirClaseA);
+                listaDibujaClases.add(nuevaClase);
+                pizarraPanel.addDibujaClases(nuevaClase);
+            }
+        });
+        anadirClaseM.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DibujaClases nuevaClase = new DibujaClases(1,pizarraL, anadirClaseM);
+                listaDibujaClases.add(nuevaClase);
+                pizarraPanel.addDibujaClases(nuevaClase);
+            }
+        });
 
         botonBorrarTodo.addActionListener(new ActionListener() {
             @Override
@@ -123,7 +138,9 @@ public class PizarraUML extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Flecha selectedFlecha = (Flecha) tipoFlechaComboBox.getSelectedItem();
+                //if(selectedFlecha = A)
                 // logica flechas
+
             }
         });
         clasesPanel.add(tipoFlechaComboBox);

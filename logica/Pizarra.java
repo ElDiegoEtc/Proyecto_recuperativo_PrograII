@@ -1,6 +1,8 @@
 package logica;
 import logica.clasesdecorator.Clase;
 import logica.command.Command;
+import logica.flechasdecorator.Conector;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
