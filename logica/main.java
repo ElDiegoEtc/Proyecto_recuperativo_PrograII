@@ -1,13 +1,7 @@
 package logica;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-
-
 import Grafica.GestorPestañas;
-import Grafica.PizarraUML;
-import logica.command.CommandConfiguracion;
-import logica.command.CommandGuardarArchivoPizarra;
-
 import javax.swing.*;
 
 public class main implements Serializable {
@@ -21,6 +15,23 @@ public class main implements Serializable {
         });
     }
 }
+
+/*
+public class main {
+    public static void main(String[] args) {
+        // Crear una instancia de ClaseBase
+        Clase miClase = new ClaseBase();
+        miClase = new DecoradorAtributo(miClase);
+
+        // Establecer coordenadas
+        miClase.setX(10);
+        miClase.setY(20);
+
+        // Obtener y mostrar las coordenadas
+        System.out.println("Coordenadas: (" + miClase.getX() + ", " + miClase.getY() + ")");
+    }
+}*/
+
 
 
 

@@ -4,7 +4,7 @@ import logica.flechasdecorator.Conector;
 import logica.flechasdecorator.ConectorDecorator;
 
 /**
- * Clase que representa un decorador para agregar la punta triangular o rombo de herencia a un conector.
+ * ClaseBase que representa un decorador para agregar la punta triangular o rombo de herencia a un conector.
  */
 public class HerenciaConectorDecorator extends ConectorDecorator {
 

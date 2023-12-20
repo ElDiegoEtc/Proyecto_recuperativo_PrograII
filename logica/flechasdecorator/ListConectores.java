@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Clase que representa una lista de conectores y proporciona métodos para agregar y dibujar conectores.
+ * ClaseBase que representa una lista de conectores y proporciona métodos para agregar y dibujar conectores.
  */
 public class ListConectores {
 

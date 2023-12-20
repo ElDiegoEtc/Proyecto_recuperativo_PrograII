@@ -1,32 +1,28 @@
 package logica.clasesdecorator;
 
-/**
- * Decorador para posiblemente agregar coordenadas a una clase como forma de decoracion adicional.
- */
-public class DecoracionCoordenadas extends Decorador {
-
-    private int coordX, coordY, width, heigth;
-
-    public DecoracionCoordenadas(Clase clase, int coordX, int coordY, int width, int heigth){
-        super(clase);
-        this.coordX = coordX;
-        this.coordY = coordY;
-        this.width = width;
-        this.heigth = heigth;
+public class ClaseBase extends Clase {
+    private String[] modulo = {"<titulo>"};
+    private int x, y, width, heigth;
+    @Override
+    public String[] getModulo() {
+        return modulo;
+    }
+    public void setModulo(String[] modulo) {
+        this.modulo = modulo;
     }
 
     /**recibe la coordenada de la clase dibujada
      * @param x: Coordenada x de la clase
      */
-    public void setCoordX(int x){
-        this.coordX = x;
+    public void setX(int x) {
+        this.x = x;
     }
 
     /**recibe la coordenada de la clase dibujada
      * @param y: Coordenada x de la clase
      */
-    public void setCoordY(int y){
-        this.coordY = y;
+    public void setY(int y){
+        this.y= y;
     }
 
     /**recibe el ancho de la clase dibujada
@@ -45,8 +41,8 @@ public class DecoracionCoordenadas extends Decorador {
 
     /**@return coordenada x
      */
-    public int getCoordX(){
-        return coordX;
+    public int getX(){
+        return x;
     }
 
     /**@return ancho
@@ -61,13 +57,9 @@ public class DecoracionCoordenadas extends Decorador {
     }
     /**@return coordenada y
      */
-    public int getCoordY(){
-        return coordY;
+    public int getY(){
+        return y;
     }
 
-    @Override
-    public String[] modulo(){
-        return super.modulo();
-    }
+
 }
-

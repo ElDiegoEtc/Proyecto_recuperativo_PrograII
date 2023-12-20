@@ -4,7 +4,7 @@ import logica.flechasdecorator.Conector;
 import java.io.Serializable;
 
 /**
- * Clase abstracta que implementa la interfaz Conector y actúa como base para los decoradores de conectores.
+ * ClaseBase abstracta que implementa la interfaz Conector y actúa como base para los decoradores de conectores.
  */
 public abstract class ConectorDecorator implements Conector, Serializable  {
 

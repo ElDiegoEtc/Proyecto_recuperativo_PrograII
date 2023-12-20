@@ -65,30 +65,34 @@ public class DibujaClases extends JPanel {
                     dibujando = false;
                     rectangulo.add(fin);
 
-                    if(opcion == 3){ //Clase completa
+                    if(opcion == 3){ //ClaseBase completa
                         p.clickBoton6();
                         int numeroClases = p.getArrayclases().size();
                         actual = p.getArrayclases().get(numeroClases-1);
                         numero_textareas = 3;
                         System.out.println("a");
-                    } else if(opcion == 2){ //Clase con atributos
+                    } else if(opcion == 2){ //ClaseBase con atributos
                         p.clickBoton3();
                         int numeroClases = p.getArrayclases().size();
                         actual = p.getArrayclases().get(numeroClases-1);
                         numero_textareas = 2;
-                    } else if(opcion == 1){ //Clase con metodos
+                    } else if(opcion == 1){ //ClaseBase con metodos
                         p.clickBoton4();
                         int numeroClases = p.getArrayclases().size();
                         actual = p.getArrayclases().get(numeroClases-1);
                         numero_textareas = 2;
                     }
+                    actual.setX(rectangulo.x);
+                    actual.setY(rectangulo.y);
+                    actual.setHeigth(rectangulo.height);
+                    actual.setWidth(rectangulo.width);
 
                     textAreas = new JTextArea[numero_textareas];
                     for (int i = 0; i < numero_textareas; i++) {
                         textAreas[i] = new JTextArea();
                         textAreas[i].setBounds(rectangulo.x, rectangulo.y + (i * rectangulo.height / numero_textareas),
                                 rectangulo.width, rectangulo.height / numero_textareas);
-                        textAreas[i].setText(actual.modulo()[i]);
+                        textAreas[i].setText(actual.getModulo()[i]);
                         panel.add(textAreas[i]);
                     }
                     mouseSoltado = true;

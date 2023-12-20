@@ -1,9 +1,9 @@
 package logica;
 
 import logica.clasesdecorator.Clase;
-import logica.clasesdecorator.ClaseAtributo;
-import logica.clasesdecorator.ClaseMetodo;
-import logica.clasesdecorator.ComponenteBase;
+import logica.clasesdecorator.ClaseBase;
+import logica.clasesdecorator.DecoradorAtributo;
+import logica.clasesdecorator.DecoradorMetodo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,15 +13,17 @@ public class ElementosPizarra implements Serializable {
      * @param p: Pizarra a la que se le añadira las clase con titulo y campo para atributos
      */
     public void AddClaseAtrbuto(Pizarra p){
-        Clase componenteBase = new ComponenteBase("<Titulo>");
-        p.addClase(new ClaseAtributo(componenteBase, "<Atributos>"));
+        Clase clasebase = new ClaseBase();
+        clasebase = new DecoradorAtributo(clasebase);
+        p.addClase(clasebase);
     }
     /** Añade una clase con 4 strings, se activa con el boton 4
      * @param p: Pizarra a la que se le añadira las clase con titulo y campo para metodos
      */
     public void AddClaseMetodo(Pizarra p){
-        Clase componenteBase = new ComponenteBase("<Titulo>");
-        p.addClase(new ClaseMetodo(componenteBase, "<Metodos>"));
+        Clase clasebase = new ClaseBase();
+        clasebase = new DecoradorMetodo(clasebase);
+        p.addClase(clasebase);
     }
 
     /**
@@ -31,10 +33,10 @@ public class ElementosPizarra implements Serializable {
      * @return
      */
     public void AddClaseCompleta(Pizarra p){
-        Clase componenteBase = new ComponenteBase("<Titulo>");
-        Clase claseAtributo = new ClaseAtributo(componenteBase, "<Atributos>");
-        Clase completa = new ClaseMetodo(claseAtributo, "<Metodos>");
-        p.addClase(completa);
+        Clase clasebase = new ClaseBase();
+        clasebase = new DecoradorAtributo(clasebase);
+        clasebase = new DecoradorMetodo(clasebase);
+        p.addClase(clasebase);
     }
     public void DeleteElement(){
 

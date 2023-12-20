@@ -1,7 +1,7 @@
 package logica.flechasdecorator;
 
 /**
- * Clase que representa un decorador para agregar el rombo o punta triangular de asociación a un conector.
+ * ClaseBase que representa un decorador para agregar el rombo o punta triangular de asociación a un conector.
  */
 public class AsociationConectorDecorator extends ConectorDecorator {
 

@@ -5,7 +5,7 @@ import logica.flechasdecorator.Conector;
 import logica.flechasdecorator.Flecha;
 
 /**
- * Clase que implementa la interfaz Conector y representa un conector simple en el contexto del Editor de Diagrama UML.
+ * ClaseBase que implementa la interfaz Conector y representa un conector simple en el contexto del Editor de Diagrama UML.
  */
 public class SimpleConector implements Conector, Serializable {
 

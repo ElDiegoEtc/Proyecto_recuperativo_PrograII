@@ -1,15 +1,18 @@
 package logica.clasesdecorator;
 
 /**
- * Interfaz que define la clase en el Editor de Diagrama UML.
+ * ClaseBase abstracta que implementa la interfaz ClaseBase y actúa como base para los decoradores.
  */
-public interface Clase {
+public abstract class Clase {
+    public abstract String[] getModulo();;
 
-    /**
-     * Retorna un array de cadenas que representa el módulo de la clase.
-     *
-     * @return Array de cadenas que forman el módulo de la clase.
-     */
-    String[] modulo();
+    public abstract void setX(int x);
+    public abstract void setY(int y);
+    public abstract void setWidth(int width);
+    public abstract void setHeigth(int heigth);
+    public abstract int getX();
+    public abstract int getWidth();
+    public abstract int getHeigth();
+    public abstract int getY();
+
 }
-

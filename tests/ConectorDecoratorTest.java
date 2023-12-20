@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 /**
- * Clase de prueba para verificar el funcionamiento correcto de los decoradores de conectores.
+ * ClaseBase de prueba para verificar el funcionamiento correcto de los decoradores de conectores.
  */
 
 public class ConectorDecoratorTest {
