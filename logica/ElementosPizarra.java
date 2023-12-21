@@ -17,7 +17,7 @@ public class ElementosPizarra implements Serializable {
         clasebase = new DecoradorAtributo(clasebase);
         p.addClase(clasebase);
     }
-    /** Añade una clase con 4 strings, se activa con el boton 4
+    /** Añade una clase con 2 strings, se activa con el boton 4
      * @param p: Pizarra a la que se le añadira las clase con titulo y campo para metodos
      */
     public void AddClaseMetodo(Pizarra p){
@@ -37,9 +37,6 @@ public class ElementosPizarra implements Serializable {
         clasebase = new DecoradorAtributo(clasebase);
         clasebase = new DecoradorMetodo(clasebase);
         p.addClase(clasebase);
-    }
-    public void DeleteElement(){
-
     }
 
     /** Metodo que sirve para borrar todas las clases y conectores del UML almacenadas en sus arraylists
