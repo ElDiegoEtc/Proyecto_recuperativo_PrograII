@@ -1,7 +1,6 @@
 package Grafica;
 
 import logica.Pizarra;
-import logica.clasesdecorator.Clase;
 import logica.command.CommandConfiguracion;
 
 import javax.swing.*;
@@ -10,19 +9,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import logica.flechasdecorator.Flecha;
-
 public class PizarraUML extends JPanel {
     private Pizarra pizarraL;
     private PizarraPanel pizarraPanel;
-    private JComboBox<Flecha> tipoFlechaComboBox;
+    private JComboBox<String> tipoFlechaComboBox;
     private JLabel nombrePizarraLabel;
     private boolean primeraVez = true;
     private ArrayList<DibujaClases> listaDibujaClases;
+    private ArrayList<DibujaFlecha> listaDibujaFlecha;
 
 
     public PizarraUML() {
         listaDibujaClases = new ArrayList<>();
+        listaDibujaFlecha = new ArrayList<>();
         pizarraL = new Pizarra(new ArrayList<>(), new ArrayList<>());
         CommandConfiguracion.CommandConfiguracion(pizarraL);
         ComponentesInicial();
@@ -89,7 +88,7 @@ public class PizarraUML extends JPanel {
         anadirClaseC.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DibujaClases nuevaClase = new DibujaClases(3,pizarraL, anadirClaseC);
+                DibujaClases nuevaClase = new DibujaClases(3,pizarraL);
                 listaDibujaClases.add(nuevaClase);
                 pizarraPanel.addDibujaClases(nuevaClase);
             }
@@ -97,7 +96,7 @@ public class PizarraUML extends JPanel {
         anadirClaseA.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DibujaClases nuevaClase = new DibujaClases(2,pizarraL, anadirClaseA);
+                DibujaClases nuevaClase = new DibujaClases(2,pizarraL);
                 listaDibujaClases.add(nuevaClase);
                 pizarraPanel.addDibujaClases(nuevaClase);
             }
@@ -105,7 +104,7 @@ public class PizarraUML extends JPanel {
         anadirClaseM.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DibujaClases nuevaClase = new DibujaClases(1,pizarraL, anadirClaseM);
+                DibujaClases nuevaClase = new DibujaClases(1,pizarraL);
                 listaDibujaClases.add(nuevaClase);
                 pizarraPanel.addDibujaClases(nuevaClase);
             }
@@ -133,13 +132,22 @@ public class PizarraUML extends JPanel {
         /**Se hace un Jcombobox para seleccionar que conector dibujar, tomando de base
          * las caracteristicas de las flechas definidas en la logica
          */
-        tipoFlechaComboBox = new JComboBox<>(Flecha.values());
+        tipoFlechaComboBox = new JComboBox<>();
+        tipoFlechaComboBox.addItem("Asociacion");
+        tipoFlechaComboBox.addItem("Agregacion");
+        tipoFlechaComboBox.addItem("Composicion");
+        tipoFlechaComboBox.addItem("Generalizacion");
+        tipoFlechaComboBox.addItem("Realizacion");
+        tipoFlechaComboBox.addItem("Dependencia");
         tipoFlechaComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Flecha selectedFlecha = (Flecha) tipoFlechaComboBox.getSelectedItem();
-                //if(selectedFlecha = A)
-                // logica flechas
+                String selectedFlecha = (String) tipoFlechaComboBox.getSelectedItem();
+                if(selectedFlecha == "Asociacion"){
+                    DibujaFlecha nuevaFlecha = new DibujaFlecha(4);
+                    listaDibujaFlecha.add(nuevaFlecha);
+                    pizarraPanel.addDibujaFlechas(nuevaFlecha);
+                }
 
             }
         });

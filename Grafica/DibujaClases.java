@@ -11,12 +11,11 @@ public class DibujaClases extends JPanel {
     private Point inicio, fin;
     private Rectangle rectangulo;
     private JTextArea[] textAreas;
-    private boolean dibujando;
-    private boolean mouseSoltado;
+    private boolean dibujando, mouseSoltado;
     private Clase actual;
     private int numero_textareas;
 
-    public DibujaClases(int opcion, Pizarra p, JButton boton) {
+    public DibujaClases(int opcion, Pizarra p) {
         dibujando = true; //dibuja las lineas que simulan los Jareatext
         rectangulo = new Rectangle();
         mouseSoltado = false;
@@ -64,13 +63,11 @@ public class DibujaClases extends JPanel {
                     fin = e.getPoint();
                     dibujando = false;
                     rectangulo.add(fin);
-
                     if(opcion == 3){ //ClaseBase completa
                         p.clickBoton6();
                         int numeroClases = p.getArrayclases().size();
                         actual = p.getArrayclases().get(numeroClases-1);
                         numero_textareas = 3;
-                        System.out.println("a");
                     } else if(opcion == 2){ //ClaseBase con atributos
                         p.clickBoton3();
                         int numeroClases = p.getArrayclases().size();
@@ -114,6 +111,9 @@ public class DibujaClases extends JPanel {
         setLayout(new BorderLayout());
         add(panel, BorderLayout.CENTER);
     }
-
+    public void resetEstado() {
+        mouseSoltado = false;
+        // Restablecer cualquier otro estado necesario aquí
+    }
 
 }

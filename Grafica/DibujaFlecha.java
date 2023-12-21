@@ -66,39 +66,42 @@ public class DibujaFlecha extends JPanel {
         at.concatenate(AffineTransform.getRotateInstance(angle));
         g2d.transform(at);
 
-        switch (seleccion) {
-            case 1: // Flecha con relleno
+        switch (seleccion) { //Es flecha rellena, Dependencia
+            case 1:
+                float[] dashPattern = {10, 5};
+                g2d.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
                 g2d.drawLine(0, 0, len, 0);
-                g2d.fillPolygon(new int[]{len, len - 5, len - 5, len},
-                        new int[]{0, -5, 5, 0}, 4);
+                g2d.setStroke(new BasicStroke());
+                g2d.drawLine(len, 0, len - 5, -5);
+                g2d.drawLine(len, 0, len - 5, 5);
                 break;
 
-            case 2: // Flecha sin relleno
+            case 2: // Conector sin relleno, Generalizacion
                 g2d.drawLine(0, 0, len, 0);
                 g2d.drawPolygon(new int[]{len, len - 5, len - 5, len},
                         new int[]{0, -5, 5, 0}, 4);
                 break;
 
-            case 3: // Rombo sin relleno
+            case 3: // Rombo sin relleno, Agregacion
                 int romboSize = 10;
                 g2d.drawLine(0, 0, len - romboSize / 2, 0);
                 g2d.drawPolygon(new int[]{len - romboSize, len, len - romboSize, len - 2 * romboSize},
                         new int[]{-romboSize / 2, 0, romboSize / 2, 0}, 4);
                 break;
 
-            case 4: // Solo línea
+            case 4: // Solo línea, Asociacion
                 g2d.drawLine(0, 0, len, 0);
                 break;
 
-            case 5: // Rombo con relleno
+            case 5: // Rombo con relleno, Composicion
                 romboSize = 10;
                 g2d.drawLine(0, 0, len - romboSize / 2, 0);
                 g2d.fillPolygon(new int[]{len - romboSize, len, len - romboSize, len - 2 * romboSize},
                         new int[]{-romboSize / 2, 0, romboSize / 2, 0}, 4);
                 break;
 
-            case 6: // Flecha sin relleno con línea entrecortada
-                float[] dashPattern = {10, 5};
+            case 6: // Conector sin relleno con línea entrecortada, Realizacion
+                dashPattern = new float[]{10, 5};
                 g2d.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
                 g2d.drawLine(0, 0, len - 5, 0);
                 g2d.drawPolygon(new int[]{len, len - 5, len - 5, len},
@@ -115,7 +118,7 @@ public class DibujaFlecha extends JPanel {
 
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Dibujo de Flecha");
+        JFrame frame = new JFrame("Dibujo de Conector");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new DibujaFlecha(6));
         frame.setSize(400, 400);
