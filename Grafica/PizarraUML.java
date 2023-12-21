@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class PizarraUML extends JPanel {
     private Pizarra pizarraL;
@@ -17,6 +18,7 @@ public class PizarraUML extends JPanel {
     private boolean primeraVez = true;
     private ArrayList<DibujaClases> listaDibujaClases;
     private ArrayList<DibujaFlecha> listaDibujaFlecha;
+    private DibujaFlecha nuevaFlecha;
 
 
     public PizarraUML() {
@@ -88,7 +90,7 @@ public class PizarraUML extends JPanel {
         anadirClaseC.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DibujaClases nuevaClase = new DibujaClases(3,pizarraL);
+                DibujaClases nuevaClase = new DibujaClases(3, pizarraL);
                 listaDibujaClases.add(nuevaClase);
                 pizarraPanel.addDibujaClases(nuevaClase);
             }
@@ -96,7 +98,7 @@ public class PizarraUML extends JPanel {
         anadirClaseA.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DibujaClases nuevaClase = new DibujaClases(2,pizarraL);
+                DibujaClases nuevaClase = new DibujaClases(2, pizarraL);
                 listaDibujaClases.add(nuevaClase);
                 pizarraPanel.addDibujaClases(nuevaClase);
             }
@@ -104,7 +106,7 @@ public class PizarraUML extends JPanel {
         anadirClaseM.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DibujaClases nuevaClase = new DibujaClases(1,pizarraL);
+                DibujaClases nuevaClase = new DibujaClases(1, pizarraL);
                 listaDibujaClases.add(nuevaClase);
                 pizarraPanel.addDibujaClases(nuevaClase);
             }
@@ -143,16 +145,32 @@ public class PizarraUML extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedFlecha = (String) tipoFlechaComboBox.getSelectedItem();
-                if(selectedFlecha == "Asociacion"){
-                    DibujaFlecha nuevaFlecha = new DibujaFlecha(4);
-                    listaDibujaFlecha.add(nuevaFlecha);
-                    pizarraPanel.addDibujaFlechas(nuevaFlecha);
+                nuevaFlecha = null;
+
+                if (Objects.equals(selectedFlecha, "Asociacion")) {
+                    nuevaFlecha = new DibujaFlecha(4, pizarraL);
+                } else if (Objects.equals(selectedFlecha, "Agregacion")) {
+                    nuevaFlecha = new DibujaFlecha(3, pizarraL);
+                } else if (Objects.equals(selectedFlecha, "Composicion")) {
+                    nuevaFlecha = new DibujaFlecha(5, pizarraL);
+                } else if (Objects.equals(selectedFlecha, "Generalizacion")) {
+                    nuevaFlecha = new DibujaFlecha(2, pizarraL);
+                } else if (Objects.equals(selectedFlecha, "Realizacion")) {
+                    nuevaFlecha = new DibujaFlecha(6, pizarraL);
+                } else if (Objects.equals(selectedFlecha, "Dependencia")) {
+                    nuevaFlecha = new DibujaFlecha(1, pizarraL);
                 }
 
+                // Comprobar si se ha creado una nueva flecha antes de añadirla
+                if (nuevaFlecha != null) {
+                    listaDibujaFlecha.add(nuevaFlecha);
+                    pizarraPanel.addDibujaFlechas(nuevaFlecha);
+                    pizarraPanel.revalidate();
+                    pizarraPanel.repaint();
+                }
             }
         });
         clasesPanel.add(tipoFlechaComboBox);
         add(clasesPanel, BorderLayout.WEST);
-
     }
 }

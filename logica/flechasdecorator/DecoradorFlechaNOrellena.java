@@ -1,6 +1,8 @@
 package logica.flechasdecorator;
 
-public class DecoradorFlechaNOrellena extends Decorador_Abstracto {
+import java.io.Serializable;
+
+public class DecoradorFlechaNOrellena extends Decorador_Abstracto implements Serializable {
 
     public DecoradorFlechaNOrellena(Conector conector) {
         super(conector);

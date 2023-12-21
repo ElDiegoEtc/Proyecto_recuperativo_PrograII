@@ -1,6 +1,8 @@
 package logica.clasesdecorator;
 
-public class ClaseBase extends Clase {
+import java.io.Serializable;
+
+public class ClaseBase extends Clase implements Serializable {
     private String[] modulo = {"<titulo>"};
     private int x, y, width, heigth;
     @Override

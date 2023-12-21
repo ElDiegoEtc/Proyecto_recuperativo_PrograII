@@ -1,9 +1,11 @@
 package logica.clasesdecorator;
 
+import java.io.Serializable;
+
 /**
  * ClaseBase abstracta que implementa la interfaz ClaseBase y actúa como base para los decoradores.
  */
-public abstract class Clase {
+public abstract class Clase implements Serializable {
     public abstract String[] getModulo();;
 
     public abstract void setX(int x);

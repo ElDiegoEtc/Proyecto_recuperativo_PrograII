@@ -1,9 +1,11 @@
 package logica.flechasdecorator;
 
+import java.io.Serializable;
+
 /**
  * ClaseBase abstracta que implementa la interfaz ClaseBase y actúa como base para los decoradores.
  */
-public abstract class Conector {
+public abstract class Conector implements Serializable {
     public abstract int getTipo();;
 
     public abstract void setX(int x);

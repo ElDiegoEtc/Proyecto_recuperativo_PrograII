@@ -1,5 +1,11 @@
 package Grafica;
 
+import logica.Pizarra;
+import logica.clasesdecorator.Clase;
+import logica.clasesdecorator.ClaseBase;
+import logica.clasesdecorator.DecoradorMetodo;
+import logica.flechasdecorator.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,8 +15,10 @@ public class DibujaFlecha extends JPanel {
     private final int seleccion;
     private Point inicio, fin;
     private boolean dibujando;
+    private boolean dibujoCompletado = false;
+    private Conector conectorbase;
 
-    public DibujaFlecha(int seleccion) {
+    public DibujaFlecha(int seleccion, Pizarra p) {
         this.seleccion = seleccion;
         dibujando = false;
 
@@ -18,11 +26,29 @@ public class DibujaFlecha extends JPanel {
             public void mousePressed(MouseEvent e) {
                 inicio = e.getPoint();
                 dibujando = true;
+                dibujoCompletado = true;
             }
 
             public void mouseReleased(MouseEvent e) {
                 dibujando = false;
-                fin = e.getPoint();
+                fin = e.getPoint(); //Podria haber implementacion de command
+                conectorbase = new ConectorBase();
+                if(seleccion == 1){
+                    conectorbase = new DecoradorFlechaRellena(conectorbase);
+                } else if (seleccion == 2) {
+                    conectorbase = new DecoradorFlechaNOrellena(conectorbase);
+                } else if (seleccion == 3) {
+                    conectorbase = new DecoradorRomboNOrelleno(conectorbase);
+                } else if (seleccion == 5) {
+                    conectorbase = new DecoradorRomboRelleno(conectorbase);
+                } else if (seleccion == 6) {
+                    conectorbase = new DecoradorFlechaEntre(conectorbase);
+                }
+                conectorbase.setX(inicio.x);
+                conectorbase.setY(inicio.y);
+                conectorbase.setX2(fin.x);
+                conectorbase.setY2(fin.y);
+                p.addConector(conectorbase);
                 repaint();
             }
         });
@@ -40,7 +66,11 @@ public class DibujaFlecha extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (dibujando) {
+        if (dibujando && !dibujoCompletado) {
+            g.setColor(Color.BLACK);
+            drawArrow(g, inicio.x, inicio.y, fin.x, fin.y, seleccion);
+        } else if (dibujoCompletado) {
+            // Dibuja la flecha estática
             g.setColor(Color.BLACK);
             drawArrow(g, inicio.x, inicio.y, fin.x, fin.y, seleccion);
         }
@@ -116,13 +146,4 @@ public class DibujaFlecha extends JPanel {
         g2d.dispose();
     }
 
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Dibujo de Conector");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new DibujaFlecha(6));
-        frame.setSize(400, 400);
-        frame.setVisible(true);
-    }
 }
-

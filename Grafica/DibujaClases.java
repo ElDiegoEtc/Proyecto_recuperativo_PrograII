@@ -111,9 +111,5 @@ public class DibujaClases extends JPanel {
         setLayout(new BorderLayout());
         add(panel, BorderLayout.CENTER);
     }
-    public void resetEstado() {
-        mouseSoltado = false;
-        // Restablecer cualquier otro estado necesario aquí
-    }
 
 }

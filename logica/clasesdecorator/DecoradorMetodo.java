@@ -1,6 +1,8 @@
 package logica.clasesdecorator;
 
-public class DecoradorMetodo extends DecoradorAbstracto {
+import java.io.Serializable;
+
+public class DecoradorMetodo extends DecoradorAbstracto implements Serializable {
 
     public DecoradorMetodo(Clase clase) {
         super(clase);

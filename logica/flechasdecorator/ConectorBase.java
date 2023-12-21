@@ -1,6 +1,8 @@
 package logica.flechasdecorator;
 
-public class ConectorBase extends Conector {
+import java.io.Serializable;
+
+public class ConectorBase extends Conector implements Serializable {
     private int tipo = 4;
     private int x, y, x2, y2;
     @Override
