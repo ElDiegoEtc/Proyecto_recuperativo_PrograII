@@ -39,6 +39,10 @@ public class ElementosPizarra implements Serializable {
         p.addClase(clasebase);
     }
 
+    public void DeleteElement(){
+        
+    }
+
     /** Metodo que sirve para borrar todas las clases y conectores del UML almacenadas en sus arraylists
      * en la pizarra p
      * @param p: instancia de la pizarra donde se borrara sus contenidos
